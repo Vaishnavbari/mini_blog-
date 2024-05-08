@@ -1,1 +1,1 @@
-# mini blog project 
+# Mini blog project 
