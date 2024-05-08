@@ -1,0 +1,154 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  </head>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-image: url("{% static 'css/b3.jpg' %}");
+      background-size: cover;
+    }
+    section {
+      height: 100vh;
+    }
+    p {
+      color: red;
+    }
+  </style>
+  <body>
+    <section>
+      <div class="container py-5 h-100">
+        <div class="row justify-content-center align-items-center h-100">
+          <div class="col-12 col-lg-9 col-xl-7">
+            <div
+              class="card shadow-2-strong card-registration"
+              style="border-radius: 15px"
+            >
+              <div class="card-body p-4 p-md-5">
+                <center>
+                  <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Registration Form</h3>
+                </center>
+                {% include "app/message.html" %}
+                <form action="{% url 'registeruser' %}" method="POST">
+                  {% csrf_token %}
+
+                  <div class="row">
+                    <div class="col-12">
+                      <center>
+                        <select
+                          class="select form-control"
+                          name="role"
+                          required
+                        >
+                          <option>admin</option>
+                          <option>Author</option>
+                        </select>
+                      </center>
+                    </div>
+                  </div>
+                  <br />
+
+                  <div class="form-group">
+                    <input
+                      name="fname"
+                      type="text"
+                      id="firstName"
+                      class="form-control form-control-lg"
+                      placeholder="enter your firstname"
+                      value="{{data.firstname}}"
+                      required
+                    />
+                    {% if error %} {% for i in error.firstname %}
+                    <p>{{i}}</p>
+                    {% endfor %} {% endif %}
+                  </div>
+
+                  <div class="form-group">
+                    <input
+                      name="lname"
+                      type="text"
+                      id="lastName"
+                      class="form-control form-control-lg"
+                      placeholder="enter your lastname"
+                      value="{{data.lastname}}"
+                      required
+                    />
+                    {% if error %} {% for i in error.lastname %}
+                    <p>{{i}}</p>
+                    {% endfor %} {% endif %}
+                  </div>
+
+                  <div class="form-group">
+                    <input
+                      name="username"
+                      type="text"
+                      id="username"
+                      class="form-control form-control-lg"
+                      placeholder="enter your username"
+                      value="{{data.username}}"
+                      required
+                    />
+                    {% if error %} {% for i in error.username %}
+                    <p>{{i}}</p>
+                    {% endfor %} {% endif %}
+                  </div>
+
+                  <div class="form-group">
+                    <input
+                      name="password"
+                      type="text"
+                      id="password"
+                      class="form-control form-control-lg"
+                      placeholder="enter your password"
+                      value="{{data.password}}"
+                      required
+                    />
+                    {% if error %} {% for i in error.password %}
+                    <p>{{i}}</p>
+                    {% endfor %} {% endif %}
+                  </div>
+
+                  <div class="form-group">
+                    <input
+                      name="email"
+                      type="text"
+                      id="email"
+                      class="form-control form-control-lg"
+                      placeholder="enter your email"
+                      value="{{data.email}}"
+                      required
+                    />
+                    {% if error %} {% for i in error.email %}
+                    <p>{{i}}</p>
+                    {% endfor %} {% endif %}
+                  </div>
+
+                  <div class="pt-2">
+                    <input
+                      class="btn btn-warning btn-lg w-100"
+                      type="submit"
+                      value="Register"
+                      required
+                    />
+                  </div>
+                </form>
+                <br />
+                <span>Do you have an account </span
+                ><a href="{% url 'login' %}">click here login</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script src="{% static 'js/app.js'%}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+  </body>
+</html>

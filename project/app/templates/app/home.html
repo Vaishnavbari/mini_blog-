@@ -1,0 +1,37 @@
+{% extends "app/dashboard.html" %} 
+{% block main%}
+
+<div class="container">
+  <h3 style="color:red">
+    {{count}}
+  </h3>
+  {% include "app/message.html"%} {% if blogs %} {% for blog in blogs %}
+  <div class="job-posting" style="border-radius: 40px">
+    <h1>Name : {{blog.name | title}}</h1>
+    <h2>Title : {{blog.title | title}}</h2>
+    <h3>Location : {{blog.location | title}}</h3>
+         <p>Meassage : {{blog.meassage | title}}</p>
+    <p>Posted by {{blog.user_id.username}}</p>
+  
+    {% if user.role == "admin" or request.user.id == blog.user_id_id %}
+    <div class="col-auto my-1">
+      <form action="{% url 'update' blog.id %}" style="display: inline">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary">Edit</button>
+      </form>
+      <form
+        action="{% url 'delete' blog.id %}"
+        style="display: inline"
+        method="POST"
+      >
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary">Delete</button>
+      </form>
+    </div>
+
+    {% endif %}
+  </div>
+  {% endfor %} {% endif %}
+</div>
+
+{% endblock %}

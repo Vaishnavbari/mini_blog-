@@ -1,0 +1,69 @@
+{% extends "app/dashboard.html" %} 
+{% block main %}
+<div class="container">
+{% include "app/message.html" %}
+<h1>Blog posting form</h1>
+<br />
+
+<form method="POST" action="{% url 'update' blog.id %}">
+  
+  {% csrf_token %}
+  
+  
+  <div class="row">
+    <div class="col">
+      <input type="text"
+        class="form-control"
+        placeholder="enter blog name "
+        name="name"
+       value={{blog.name}} required/>
+    </div>
+  </div>
+  <br />
+  <div class="row">
+    <div class="col">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="enter blog tilte "
+        name="tittle" value={{blog.title}}
+        required
+      />
+    </div>
+  </div>
+  <br />
+  <div class="row">
+    <div class="col">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="enter location"
+        name="location"
+        value="{{blog.location}}"
+        required 
+      />
+    </div>
+  </div>
+  <br />
+  <div class="row">
+    <div class="col">
+      <textarea
+        name="meassage"
+        style="height: 400px"
+        class="form-control"
+        id="exampleFormControlTextarea5"
+        rows="3"
+        placeholder="enter message"
+       
+        required>{{blog.meassage}}</textarea>
+    </div>
+  </div>
+  <div class="col-auto my-1">
+    <button type="submit" class="btn btn-primary"> update</button>
+    <button type="button" class="btn btn-warning"> <a href="{% url 'cancel'%}" style="text-decoration:none; color:black" >Cancel</a></button>
+  </div>
+</form>
+
+</div>
+</div>
+{% endblock %}

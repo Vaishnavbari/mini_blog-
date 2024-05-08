@@ -1,0 +1,68 @@
+{% extends "app/dashboard.html" %} 
+{% block main%}
+<div class="container">
+  <h3 style="color:red">
+    {{count}}
+  </h3>
+  {% include "app/message.html"%}
+  <center><h3>BLOG POSTING FORM</h3></center>
+  <hr />
+  <br />
+  <form method="POST" action="{% url 'blogs' %}">
+    {% csrf_token %}
+
+    <div class="row">
+      <div class="col">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Enter blog name "
+          name="name"
+          required
+        />
+      </div>
+    </div>
+    <br />
+    <div class="row">
+      <div class="col">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Enter blog tilte "
+          name="tittle"
+          required
+        />
+      </div>
+    </div>
+    <br />
+    <div class="row">
+      <div class="col">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Enter location"
+          name="location"
+          required
+        />
+      </div>
+    </div>
+    <br />
+    <div class="row">
+      <div class="col">
+        <textarea
+          name="meassage"
+          style="height: 400px"
+          class="form-control"
+          id="exampleFormControlTextarea5"
+          rows="3"
+          placeholder="Enter your message "
+          required
+        ></textarea>
+      </div>
+    </div>
+    <div class="col-auto my-1">
+      <button type="submit" class="btn btn-warning">Add</button>
+    </div>
+  </form>
+</div>
+{% endblock %}
